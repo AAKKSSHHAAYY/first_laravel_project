@@ -1,5 +1,5 @@
 <?php
-
+use DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 Route::get('get_list','CustomersController@getlist');
 Route::post('add_customers','CustomersController@save');
+Route::get('add_compony',function()
+{
+    
+
+});

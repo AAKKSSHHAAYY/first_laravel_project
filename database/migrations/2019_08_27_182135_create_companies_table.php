@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterCustomerTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AlterCustomerTable extends Migration
      */
     public function up()
     {
-        Schema::table('customers', function($table) {
-            $table->string('email')->default('');
+        Schema::create('companies', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('phone');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AlterCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::table('customers', function($table) {
-            $table->dropColumn('email');
-        });
+        Schema::dropIfExists('companies');
     }
 }
