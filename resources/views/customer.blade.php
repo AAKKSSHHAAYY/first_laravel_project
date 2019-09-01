@@ -85,11 +85,13 @@
       </table>
     </div>
 </div>
-<div class="row">
-    <h3> Reverse relationship</h3>
+
+{{-- this will show us how to get employes with inverse reltionship --}}
+<div class="row py-5">
+    <h4> Reverse relationship comapnies and there employees</h4>
     <div class="col-12">
       @foreach ($companies as $company)
-      <h3>{{$company->name}}</h3>
+      <h5>{{$company->name}}</h5>
         @foreach ($company->customers as $customer)
         <li>{{$customer->name}}</li>   
         @endforeach     
