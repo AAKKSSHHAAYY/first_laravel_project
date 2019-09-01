@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 use App\Customer;
 
@@ -16,7 +17,12 @@ class CustomersController extends Controller
         // return view('customer',['activeCustomers' => $activeCustomers,'inactiveCustomers'=>$inactiveCustomers
         // ]);
         // ! OR same result above line to pass the data to view
-        return view('customer',compact('inactiveCustomers','activeCustomers'));
+        
+
+        // list of companies
+        $companies =Company::all();
+
+        return view('customer',compact('inactiveCustomers','activeCustomers','companies'));
     }
     
     public function save(Request $request)
@@ -24,7 +30,8 @@ class CustomersController extends Controller
         $data = $request->validate([
            'name' =>'required | min:3',
            'active' =>'required',
-           'email' =>'required | min:3 |email:rfc,dns'
+           'email' =>'required | min:3 |email:rfc,dns',
+           'company_id'=> 'required'
         ]);
         // if we wan to add option field than we jsut pull in validation array with blank rule
 

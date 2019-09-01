@@ -20,6 +20,15 @@
               <div>{{$errors->first('email')}}</div>
             </div>
             <div class="form-group">
+              <label for="company_id">Company</label>
+              <select name="company_id" id="company_id" class="form-control" > 
+                <option value="" selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select Company</option>
+              @foreach ($companies as $company)
+              <option value="{{$company->id}}">{{$company->name}}</option>
+              @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label for="active">Status</label>
               <select name="active" id="active" class="form-control" > 
                 <option value=""> Select Customers Status</option>
@@ -43,13 +52,13 @@
       <tr>
         <th>Name</th><th>email</th>
       </tr>
-      @foreach($activeCustomers as $customer)
-      <tr>
+      @foreach($activeCustomers as $activeCustomer)
+     <tr>
+       <td>
+          {{$activeCustomer->name}} <span class="text-muted">{{$activeCustomer->company->name}}</span>
+       </td>
         <td>
-          {{$customer->name}}
-        </td>
-        <td>
-          {{$customer->email}}
+          {{$activeCustomer->email}}
         </td>
       </tr>
     </li>
@@ -76,4 +85,16 @@
       </table>
     </div>
 </div>
+<div class="row">
+    <h3> Reverse relationship</h3>
+    <div class="col-12">
+      @foreach ($companies as $company)
+      <h3>{{$company->name}}</h3>
+        @foreach ($company->customers as $customer)
+        <li>{{$customer->name}}</li>   
+        @endforeach     
+      @endforeach
+    </div>
+</div>
     @endsection
+

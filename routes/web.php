@@ -1,5 +1,5 @@
 <?php
-use DB;
+// use DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,16 @@ Route::get('get_list','CustomersController@getlist');
 Route::post('add_customers','CustomersController@save');
 Route::get('add_compony',function()
 {
+   $c =  DB::table('companies')->insertGetId(
+        ['name' => 'Manu Industries', 'phone' => '12345667']
+    );
+    if($c){
+        echo "success ";
+        echo "<br>",$c;
+    }
+    else{
+        echo "data not inserted in database";
+    }
     
 
 });

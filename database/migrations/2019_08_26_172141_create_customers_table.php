@@ -8,13 +8,14 @@ class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *  
      * @return void
      */
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('company_id');
             $table->string('name');
             $table->string('email');
             $table->integer('active');
@@ -23,7 +24,7 @@ class CreateCustomersTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the <migrations class=""></migrations>
      *
      * @return void
      */
