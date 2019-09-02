@@ -8,7 +8,7 @@ use App\Customer;
 
 class CustomersController extends Controller
 {
-    public function getlist()
+    public function index()
     {
         // $customers =Customer::all();
         $activeCustomers = Customer::active()->get();
@@ -19,10 +19,16 @@ class CustomersController extends Controller
         // ! OR same result above line to pass the data to view
         
 
-        // list of companies
-        $companies =Company::all();
+        $companies = Company::all();
 
-        return view('customer',compact('inactiveCustomers','activeCustomers','companies'));
+        return view('customers.index',compact('inactiveCustomers','activeCustomers','companies'));
+    }
+    public function create()
+    {
+
+         // list of companies
+         $companies =Company::all();
+         return view('customers.create',compact('companies'));
     }
     
     public function save(Request $request)
@@ -46,6 +52,6 @@ class CustomersController extends Controller
         // OR as code as above
 
         Customer::create($data);
-        return back();
+        return redirect('')
     }
 }

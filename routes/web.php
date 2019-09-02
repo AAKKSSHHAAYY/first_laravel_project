@@ -14,8 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('get_list','CustomersController@getlist');
+Route::get('customers','CustomersController@index');
 Route::post('add_customers','CustomersController@save');
+Route::get('customers/create','CustomersController@create');
+
+
+
 Route::get('add_compony',function()
 {
    $c =  DB::table('companies')->insertGetId(
